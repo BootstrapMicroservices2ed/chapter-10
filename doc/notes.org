@@ -1,4 +1,5 @@
-* d:\cprojects\lotus\BootstrapMicroservices2ed\chapter-10>docker compose up --build
+* 10.5
+** d:\cprojects\lotus\BootstrapMicroservices2ed\chapter-10>docker compose up --build
 docker compose up --build
  rabbit Pulling 
  d7bfe07ed847 Already exists 
@@ -2106,10 +2107,10 @@ rabbit               | 2023-06-09 06:01:58.405616+00:00 [warning] <0.890.0> clie
 db                   | {"t":{"$date":"2023-06-09T06:01:58.406+00:00"},"s":"I",  "c":"-",        "id":20883,   "ctx":"conn4","msg":"Interrupted operation as its client disconnected","attr":{"opId":5699}}
 db                   | {"t":{"$date":"2023-06-09T06:01:58.407+00:00"},"s":"I",  "c":"NETWORK",  "id":22944,   "ctx":"conn4","msg":"Connection ended","attr":{"remote":"172.18.0.9:48384","uuid":"14265ddc-aa16-4ae5-9937-53bc4287637c","connectionId":4,"connectionCount":0}}
 Error response from daemon: No such container: fbebf30d9143c579ac6952331368f22ac55c4587455e33f3de4e23a71ac578f7
-* http://localhost:4000
+** http://localhost:4000
 Able to upload video
 Unable to play video
-* d:\cprojects\lotus\BootstrapMicroservices2ed\chapter-10>docker compose down
+** d:\cprojects\lotus\BootstrapMicroservices2ed\chapter-10>docker compose down
 docker compose down
  Container gateway  Stopping
  Container video-streaming  Stopping
@@ -2158,3 +2159,90 @@ docker compose down
  Container rabbit  Removed
  Network chapter-10_default  Removing
  Network chapter-10_default  Removed
+* 10.6
+** 10.6.1
+*** d:\cprojects\lotus\BootstrapMicroservices2ed\chapter-10>cd metadata
+*** cd metadata
+*** d:\cprojects\lotus\BootstrapMicroservices2ed\chapter-10\metadata>ls
+ls
+Dockerfile-dev
+Dockerfile-prod
+jest.config.js
+package-lock.json
+package.json
+src
+*** d:\cprojects\lotus\BootstrapMicroservices2ed\chapter-10\metadata>npm install
+npm install
+npm notice Beginning October 4, 2021, all connections to the npm registry - including for package installation - must use TLS 1.2 or higher. You are currently using plaintext http to connect. Please visit the GitHub blog for more information: https://github.blog/2021-08-23-npm-registry-deprecating-tls-1-0-tls-1-1/
+npm notice Beginning October 4, 2021, all connections to the npm registry - including for package installation - must use TLS 1.2 or higher. You are currently using plaintext http to connect. Please visit the GitHub blog for more information: https://github.blog/2021-08-23-npm-registry-deprecating-tls-1-0-tls-1-1/
+npm WARN deprecated debug@4.1.1: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+
+added 583 packages in 10s
+
+39 packages are looking for funding
+  run `npm fund` for details
+npm notice 
+npm notice New minor version of npm available! 9.6.2 -> 9.7.1
+npm notice Changelog: <https://github.com/npm/cli/releases/tag/v9.7.1>
+npm notice Run `npm install -g npm@9.7.1` to update!
+npm notice 
+*** d:\cprojects\lotus\BootstrapMicroservices2ed\chapter-10\metadata>npm test
+npm test
+
+> metadata@1.0.0 test
+> jest
+
+  console.log
+    Microservice online.
+
+      at log (src/index.js:74:17)
+
+  console.log
+    Microservice online.
+
+      at log (src/index.js:74:17)
+
+  console.log
+    Microservice online.
+
+      at log (src/index.js:74:17)
+
+PASS src/index.test.js
+  metadata microservice
+    √ microservice starts web server on startup (235 ms)
+    √ /videos route is handled (6 ms)
+    √ /videos route retreives data via videos collection (6 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        1.992 s
+Ran all test suites.
+** 10.6.2
+*** test shell: d:\cprojects\lotus\BootstrapMicroservices2ed\chapter-10>npm install
+npm install
+npm notice Beginning October 4, 2021, all connections to the npm registry - including for package installation - must use TLS 1.2 or higher. You are currently using plaintext http to connect. Please visit the GitHub blog for more information: https://github.blog/2021-08-23-npm-registry-deprecating-tls-1-0-tls-1-1/
+npm notice Beginning October 4, 2021, all connections to the npm registry - including for package installation - must use TLS 1.2 or higher. You are currently using plaintext http to connect. Please visit the GitHub blog for more information: https://github.blog/2021-08-23-npm-registry-deprecating-tls-1-0-tls-1-1/
+
+added 105 packages in 6s
+
+5 packages are looking for funding
+  run `npm fund` for details
+
+*** infra shell: docker compose up --build 
+*** test schell: d:\cprojects\lotus\BootstrapMicroservices2ed\chapter-10>npm test
+npm test
+
+> chapter-10@1.0.0 test
+> playwright test --reporter=list  --workers 1
+
+
+Running 3 tests using 1 worker
+
+  ✓  1 [chromium] › frontend.test.js:11:5 › flixtube front end › can list videos (1.3s)
+  ✓  2 [firefox] › frontend.test.js:11:5 › flixtube front end › can list videos (3.4s)
+  ✓  3 [webkit] › frontend.test.js:11:5 › flixtube front end › can list videos (1.6s)
+
+  3 passed (17.6s)
+ 
+*** infra shell: docker compose down
